@@ -1,0 +1,15 @@
+#resultContent{
+    margin-right: 50px;
+    font-family: Arial;
+
+}
+
+#resultContent > p{
+    color: black;
+    font-size: 13px;
+}
+
+#resultContent > p > i{
+    color: royalblue;
+    font-size: 15px;
+}

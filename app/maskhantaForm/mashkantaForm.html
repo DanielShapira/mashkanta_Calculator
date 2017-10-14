@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="maskhantaForm/mashkantaForm.css">
+</head>
+<body>
+    <i class = "titles">חישוב לפי</i>
+
+    <ul id = "tabs" ng-init="data.tabPosition = true">
+        <li ng-class="{'pickedTab':data.tabPosition === true}" ng-click="loanByYear()">סכום הלוואה</li>
+        <li ng-class="{'pickedTab':data.tabPosition === false}" ng-click="loanByRefund()">החזר גובה חודשי</li>
+    </ul>
+
+    <br>
+
+    <form id="calcForm" ng-submit="passToResult()" >
+        <i  class = "titles">סכום ההלוואה ב-₪</i>
+        <input id ="moneyInput" type="number" title="" ng-model="data.moneyLoan" required  min="1" placeholder="הזן סכום">
+        <div class="tooltip">?
+            <span class="tooltiptext">הזן את גובה ההלואה המבוקשת</span>
+        </div>
+
+        <br/>
+        <br>
+
+        <div id="byYearRange" ng-show="data.tabPosition">
+            <i class = "titles">תקופת הלוואה בשנים : {{data.yearRange}} </i>
+            <input type="range" ng-model="data.yearRange" id="yearRange" min="1" max="40" step="1"  title="">
+        </div>
+
+        <div id="byRefund" ng-hide="data.tabPosition">
+            <i class = "titles">החזר חודשי ב-₪ </i>
+            <input id ="refundMoney" type="number" title="" ng-model="data.refundCash"  ng-required="!data.tabPosition"  min="1" placeholder="הזן החזר חודשי">
+        </div>
+
+
+        <div class="tooltip">?
+            <span id= "refundOrYearRange" class="tooltiptext">הזן כמה שנים תחזיר את ההלואה</span>
+        </div>
+
+        <br/>
+        <br>
+
+        <i  class = "titles">כמות אחוז מהכנוסתיך תרצה להבטיח ליקירך?</i>
+        <input type = button id="plusButton" value="+"  ng-click="addPercentage()">
+        <input id="interestRange" type="text" step="any" ng-model="data.percentageRange" ng-value="(data.percentageRange|currency:''|number:1) + '%'"  title="" disabled/>
+        <input type = button id="minusButton" value="-"  ng-click="dividePercentage()">
+
+
+        <div class="tooltip">?
+            <span class="tooltiptext">הזן אחוז ריבית</span>
+        </div>
+
+        <br/>
+        <br>
+
+        <div id="resetCalcButtons">
+            <input type="submit" value = "חשב">
+            <input type="button" value="אפס" ng-click="clear()">
+        </div>
+    </form>
+
+    <div id="downNote"><sup>*</sup>שיעור הריבית השנתית הממוצע במשק הוא 1.5% </div>
+</body>
+</html>

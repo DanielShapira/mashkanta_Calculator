@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="maskhantaFormResult/calcResult.css">
+</head>
+<body>
+<div id = "resultContent">
+    <p><i>סכום ההלוואה :</i> {{(data.moneyLoan|currency:'') + '₪'}}</p>
+
+    <p ng-hide="data.tabPosition"><i>מספר שנים להחזר ההלוואה :</i> {{data.yearRange}}</p>
+    <p ng-hide="data.tabPosition"><i>סכום חודשי להחזר הלוואה :</i> {{(data.refundCash|currency:'') + '₪'}}</p>
+
+    <p ng-show="data.tabPosition"><i>מספר שנים להחזר הלוואה :</i> {{data.yearRange}}</p>
+    <p ng-show="data.tabPosition"><i>סכום חודשי להחזר הלוואה :</i> {{(data.refundCash|currency:'') + '₪'}}</p>
+
+    <p ng-show="data.yearRange"><i>סה"כ ריבית לכל התקופה :</i> {{data.refundCash * data.yearRange * 12 - data.moneyLoan|currency:" ₪ "}}</p>
+    <p ng-show="data.yearRange"><i>סכום כולל שישולם בסוף תקופה :</i> {{data.refundCash * data.yearRange * 12|currency:" ₪ "}}</p>
+
+    <i></i>
+
+    <p><i>ריבית :</i> {{(data.percentageRange|currency:''|number:1) + '%'}}</p>
+</div>
+
+
+</body>
+</html>
